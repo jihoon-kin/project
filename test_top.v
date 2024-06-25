@@ -7,8 +7,8 @@ module keypad_test_top(
     output [7:0] seg_7,
     output [3:0] com
     );
-    //16ºñÆ® Ä«¿îÅÍ¸¦ Ãß°¡ÇÏ°í 
-    //key_valid »ó½Â¿§Áö¿¡¼­ key_value°¡ 1ÀÌ¸é 1Áõ°¡ key_value°¡ 2¸é 1°¨¼Ò Ä«¿îÅÍ °ªÀ» fnd¿¡ Ãâ·ÂÇÏ¶ó
+    //16ë¹„íŠ¸ ì¹´ìš´í„°ë¥¼ ì¶”ê°€í•˜ê³  
+    //key_valid ìƒìŠ¹ì—£ì§€ì—ì„œ key_valueê°€ 1ì´ë©´ 1ì¦ê°€ key_valueê°€ 2ë©´ 1ê°ì†Œ ì¹´ìš´í„° ê°’ì„ fndì— ì¶œë ¥í•˜ë¼
     wire [15:0] key_value;
     
     reg [15:0] key_counter;
@@ -30,7 +30,7 @@ module keypad_test_top(
 endmodule
 
 //////////////////////////////////
-module button_test_top_2( // ±³¼ö´ÔÀÌ ÇÏ½Å°Í 
+module button_test_top_2( // êµìˆ˜ë‹˜ì´ í•˜ì‹ ê²ƒ 
     input clk, reset_p,
     input [3:0] btnU,
     output [7:0] seg_7,
@@ -45,12 +45,12 @@ module button_test_top_2( // ±³¼ö´ÔÀÌ ÇÏ½Å°Í
 //    button_cntr btnU_cntr2(.clk(clk), .reset_p(reset_p), .btn(btnU[2]), .btn_pe(btnU_pedge[2]));
 //    button_cntr btnU_cntr3(.clk(clk), .reset_p(reset_p), .btn(btnU[3]), .btn_pe(btnU_pedge[3]));
     
-    genvar i; // ÀÌ º¯¼ö´Â È¸·Î°¡ ¸¸µé¾îÁöÁö ¾Ê´Â´Ù. for¹®¿¡ µé¾î°¡´Â º¯¼ö·Î¸¸ ¾²ÀÓ
+    genvar i; // ì´ ë³€ìˆ˜ëŠ” íšŒë¡œê°€ ë§Œë“¤ì–´ì§€ì§€ ì•ŠëŠ”ë‹¤. forë¬¸ì— ë“¤ì–´ê°€ëŠ” ë³€ìˆ˜ë¡œë§Œ ì“°ì„
     generate
-        for (i=0;i<4;i=i+1)begin:btn_cntr //for(ÃÊ±â°ª, ¹İº¹À» À§ÇÑ Á¶°Ç½Ä, ÇÑ¹ø ¹İº¹ÇÏ°í ´Ù½Ã ¼öÇàÇÏ´Â Á¶°Ç½Ä), Âü ÀÎ µ¿¾È °è¼Ó ¹İº¹ÇÑ´Ù.
-            button_cntr btn_inst(.clk(clk), .reset_p(reset_p), .btn(btnU[i]), .btn_pe(btnU_pedge[i])); // begin: µÚ¿¡´Â Àëºí·°ÀÇ ÀÌ¸§À» Á¤ÇØÁØ°Í
+        for (i=0;i<4;i=i+1)begin:btn_cntr //for(ì´ˆê¸°ê°’, ë°˜ë³µì„ ìœ„í•œ ì¡°ê±´ì‹, í•œë²ˆ ë°˜ë³µí•˜ê³  ë‹¤ì‹œ ìˆ˜í–‰í•˜ëŠ” ì¡°ê±´ì‹), ì°¸ ì¸ ë™ì•ˆ ê³„ì† ë°˜ë³µí•œë‹¤.
+            button_cntr btn_inst(.clk(clk), .reset_p(reset_p), .btn(btnU[i]), .btn_pe(btnU_pedge[i])); // begin: ë’¤ì—ëŠ” ì¼ë¸”ëŸ­ì˜ ì´ë¦„ì„ ì •í•´ì¤€ê²ƒ
         end
-    endgenerate//for = ¹İº¹¹®, 
+    endgenerate//for = ë°˜ë³µë¬¸, 
     
     always @(posedge clk, posedge reset_p)begin 
         if(reset_p)btn_counter = 0;
@@ -67,7 +67,7 @@ module button_test_top_2( // ±³¼ö´ÔÀÌ ÇÏ½Å°Í
 endmodule
 
 
-/////////btnÀÔ·Â FND seg7Ãâ·Â È¸·Î
+/////////btnì…ë ¥ FND seg7ì¶œë ¥ íšŒë¡œ
 module button_ledbar_top(
     input clk, reset_p,
     input [3:0] btn,
@@ -114,7 +114,7 @@ module button_ledbar_top(
     
 endmodule
 
-module watch_top( // ½Ã°£À» Á¤È®È÷ ¸ÂÃâ ¼ö ÀÖ´Â ½Ã°è
+module watch_top( // ì‹œê°„ì„ ì •í™•íˆ ë§ì¶œ ìˆ˜ ìˆëŠ” ì‹œê³„
     input clk, reset_p,
     input [2:0] btn,
     output [3:0] com,
@@ -124,7 +124,7 @@ module watch_top( // ½Ã°£À» Á¤È®È÷ ¸ÂÃâ ¼ö ÀÖ´Â ½Ã°è
     reg sec, min;
 
 //    clock_usec usec_clk(.clk(clk), .reset_p(reset_p), .clk_usec(clk_usec));
-    clock_usec usec_clk(clk, reset_p, clk_usec); //À§¿¡ ÀÖ´Â°Å¶û °°Àº°Å´Ù ´ë½Å ¸ğµâ ÀÔÃâ·ÂÀÇ ¼ø¼­¸¦ ¾Ë¾Æ¾ßÇÑ´Ù.  
+    clock_usec usec_clk(clk, reset_p, clk_usec); //ìœ„ì— ìˆëŠ”ê±°ë‘ ê°™ì€ê±°ë‹¤ ëŒ€ì‹  ëª¨ë“ˆ ì…ì¶œë ¥ì˜ ìˆœì„œë¥¼ ì•Œì•„ì•¼í•œë‹¤.  
     
     clock_div_1000 msec_clk(clk, reset_p, clk_usec, clk_msec);
     
@@ -132,7 +132,7 @@ module watch_top( // ½Ã°£À» Á¤È®È÷ ¸ÂÃâ ¼ö ÀÖ´Â ½Ã°è
     
     clock_min min_clk(clk, reset_p, sec, clk_min);
     
-    // usec -> msec -> sec -> min ÀÌ·¸°Ô ¼øÂ÷ÀûÀ¸·Î ¼¼¾î¼­ ÇÑÅ¬¶ô¾¿ ¸¸µé¾îÁö´Â°Å´Ù. 
+    // usec -> msec -> sec -> min ì´ë ‡ê²Œ ìˆœì°¨ì ìœ¼ë¡œ ì„¸ì–´ì„œ í•œí´ë½ì”© ë§Œë“¤ì–´ì§€ëŠ”ê±°ë‹¤. 
     
     wire [3:0] sec1, sec10, min1, min10;
     
@@ -171,11 +171,11 @@ module watch_top( // ½Ã°£À» Á¤È®È÷ ¸ÂÃâ ¼ö ÀÖ´Â ½Ã°è
     fnd_4digit_cntr fnd(.clk(clk), .reset_p(reset_p), .value({min10,min1,sec10,sec1}),
     .seg_7_an(seg_7), .com(com));
     
-endmodule // edge detector¿¡¼­ PDT°¡ ¹ß»ıÇÏ¿© 40ns Á¤µµ ¿ÀÂ÷°¡ ¹ß»ıÇÑ´Ù. ¿ì¸®°¡ Àß¸ğ¸£±â ¶§¹®¿¡ »ó°ü ¾ø´Ù. 
+endmodule // edge detectorì—ì„œ PDTê°€ ë°œìƒí•˜ì—¬ 40ns ì •ë„ ì˜¤ì°¨ê°€ ë°œìƒí•œë‹¤. ìš°ë¦¬ê°€ ì˜ëª¨ë¥´ê¸° ë•Œë¬¸ì— ìƒê´€ ì—†ë‹¤. 
 
-// ClkÀ» °®´Ù ¾µ¼öÀÖ°Ô ¸¸µç ¸ğµâ ÇÏÁö¸¸ ½Ã°è¸¦ ¸¸µé¶§ Clk¸ğµâÀ» ÇÑ²¨¹ø¿¡ ¸ğ¾Æ³õÀ¸¸é, 
-// ³»°¡ ½Ã°£À» ¸ÂÃß°í ½ÍÀ»¶§ ´Ù½Ã ºĞÇØÇÏ´Â ÀÛ¾÷À» ÇØ¾ßÇÏ±â ¶§¹®¿¡ ½Ã°è¸¸µé¶§´Â ±»ÀÌ ÀÌ·¸°Ô ÇÏÁö¸¶¶ó.
-// Áö±İÀº ½Ã°£ÀÌ Á¶±İ³²¾Æ¼­ ÇÏ´Â°Å´Ï °Á ÇØºÁ¶ó.
+// Clkì„ ê°–ë‹¤ ì“¸ìˆ˜ìˆê²Œ ë§Œë“  ëª¨ë“ˆ í•˜ì§€ë§Œ ì‹œê³„ë¥¼ ë§Œë“¤ë•Œ Clkëª¨ë“ˆì„ í•œêº¼ë²ˆì— ëª¨ì•„ë†“ìœ¼ë©´, 
+// ë‚´ê°€ ì‹œê°„ì„ ë§ì¶”ê³  ì‹¶ì„ë•Œ ë‹¤ì‹œ ë¶„í•´í•˜ëŠ” ì‘ì—…ì„ í•´ì•¼í•˜ê¸° ë•Œë¬¸ì— ì‹œê³„ë§Œë“¤ë•ŒëŠ” êµ³ì´ ì´ë ‡ê²Œ í•˜ì§€ë§ˆë¼.
+// ì§€ê¸ˆì€ ì‹œê°„ì´ ì¡°ê¸ˆë‚¨ì•„ì„œ í•˜ëŠ”ê±°ë‹ˆ ê± í•´ë´ë¼.
 module clk_top(
     input clk, reset_p,
     output clk_sec, clk_min
@@ -190,7 +190,7 @@ module clk_top(
     
 endmodule
 
-////csec Clk ¸ğµâ
+////csec Clk ëª¨ë“ˆ
 module csec_clk_top(
     input clk, reset_p,
     output clk_10msec, clk_sec
@@ -205,7 +205,7 @@ module csec_clk_top(
     
 endmodule
 
-//sec clk ¸ğµâ
+//sec clk ëª¨ë“ˆ
 module sec_clk_top(
     input clk, reset_p,
     output clk_sec
@@ -219,8 +219,8 @@ module sec_clk_top(
     
 endmodule
 
-///±³¼ö´ÔÀÌ ÇÏ½Å°Í
-module watch_top1( // ½Ã°£À» Á¤È®È÷ ¸ÂÃâ ¼ö ÀÖ´Â ½Ã°è
+///êµìˆ˜ë‹˜ì´ í•˜ì‹ ê²ƒ
+module watch_top1( // ì‹œê°„ì„ ì •í™•íˆ ë§ì¶œ ìˆ˜ ìˆëŠ” ì‹œê³„
     input clk, reset_p,
     input [2:0] btn,
     input enable_w,
@@ -234,7 +234,7 @@ module watch_top1( // ½Ã°£À» Á¤È®È÷ ¸ÂÃâ ¼ö ÀÖ´Â ½Ã°è
     wire set_mode;
     wire [2:0] btn_pedge;
 ////    clock_usec usec_clk(.clk(clk), .reset_p(reset_p), .clk_usec(clk_usec));
-//    clock_usec usec_clk(clk, reset_p, clk_usec); //À§¿¡ ÀÖ´Â°Å¶û °°Àº°Å´Ù ´ë½Å ¸ğµâ ÀÔÃâ·ÂÀÇ ¼ø¼­¸¦ ¾Ë¾Æ¾ßÇÑ´Ù.  
+//    clock_usec usec_clk(clk, reset_p, clk_usec); //ìœ„ì— ìˆëŠ”ê±°ë‘ ê°™ì€ê±°ë‹¤ ëŒ€ì‹  ëª¨ë“ˆ ì…ì¶œë ¥ì˜ ìˆœì„œë¥¼ ì•Œì•„ì•¼í•œë‹¤.  
     
 //    clock_div_1000 msec_clk(clk, reset_p, clk_usec, clk_msec);
     
@@ -244,7 +244,7 @@ module watch_top1( // ½Ã°£À» Á¤È®È÷ ¸ÂÃâ ¼ö ÀÖ´Â ½Ã°è
 
     clk_top clk_top(clk, reset_p, sec_edge, clk_min);
     
-    // usec -> msec -> sec -> min ÀÌ·¸°Ô ¼øÂ÷ÀûÀ¸·Î ¼¼¾î¼­ ÇÑÅ¬¶ô¾¿ ¸¸µé¾îÁö´Â°Å´Ù. 
+    // usec -> msec -> sec -> min ì´ë ‡ê²Œ ìˆœì°¨ì ìœ¼ë¡œ ì„¸ì–´ì„œ í•œí´ë½ì”© ë§Œë“¤ì–´ì§€ëŠ”ê±°ë‹¤. 
     
     counter_dec_60 counter_sec(clk, reset_p, sec_edge, sec1, sec10);
     counter_dec_60 counter_min(clk, reset_p, min_edge, min1, min10);
@@ -261,9 +261,9 @@ module watch_top1( // ½Ã°£À» Á¤È®È÷ ¸ÂÃâ ¼ö ÀÖ´Â ½Ã°è
     assign sec_edge = set_mode ? btn_pedge[1] : clk_sec;
     assign min_edge = set_mode ? btn_pedge[2] : clk_min;
 
-endmodule // edge detector¿¡¼­ PDT°¡ ¹ß»ıÇÏ¿© 40ns Á¤µµ ¿ÀÂ÷°¡ ¹ß»ıÇÑ´Ù. ¿ì¸®°¡ Àß¸ğ¸£±â ¶§¹®¿¡ »ó°ü ¾ø´Ù. 
+endmodule // edge detectorì—ì„œ PDTê°€ ë°œìƒí•˜ì—¬ 40ns ì •ë„ ì˜¤ì°¨ê°€ ë°œìƒí•œë‹¤. ìš°ë¦¬ê°€ ì˜ëª¨ë¥´ê¸° ë•Œë¬¸ì— ìƒê´€ ì—†ë‹¤. 
 
-//¿ì¸®°¡ ´Ù±â´É ½Ã°è¸¦ ¸¸µé¾ú´Âµ¥ watch, stop_watch, cook_timer ¾ê³×°¡ fnd, btn_cntr µîÀÌ ´Ù µé¾î°¡ÀÖ¾î¼­ ¹ÛÀ¸·Î »©¼­ ÇÏ³ª¸¸ ¾²±âÀ§ÇØ ÇÏ´Â °Í.
+//ìš°ë¦¬ê°€ ë‹¤ê¸°ëŠ¥ ì‹œê³„ë¥¼ ë§Œë“¤ì—ˆëŠ”ë° watch, stop_watch, cook_timer ì–˜ë„¤ê°€ fnd, btn_cntr ë“±ì´ ë‹¤ ë“¤ì–´ê°€ìˆì–´ì„œ ë°–ìœ¼ë¡œ ë¹¼ì„œ í•˜ë‚˜ë§Œ ì“°ê¸°ìœ„í•´ í•˜ëŠ” ê²ƒ.
 module loadable_watch(
     input clk, reset_p,
     input [2:0] btn_pedge,
@@ -278,18 +278,18 @@ module loadable_watch(
     wire [15:0] cur_time, set_time;
    
     clk_top clk_top(clk, reset_p, clk_sec, clk_min);
-//    clock_usec usec_clk(clk, reset_p, clk_usec); //À§¿¡ ÀÖ´Â°Å¶û °°Àº°Å´Ù ´ë½Å ¸ğµâ ÀÔÃâ·ÂÀÇ ¼ø¼­¸¦ ¾Ë¾Æ¾ßÇÑ´Ù.  
+//    clock_usec usec_clk(clk, reset_p, clk_usec); //ìœ„ì— ìˆëŠ”ê±°ë‘ ê°™ì€ê±°ë‹¤ ëŒ€ì‹  ëª¨ë“ˆ ì…ì¶œë ¥ì˜ ìˆœì„œë¥¼ ì•Œì•„ì•¼í•œë‹¤.  
 //    clock_div_1000 msec_clk(clk, reset_p, clk_usec, clk_msec);
 //    clock_div_1000 sec_clk(clk, reset_p, clk_msec, clk_sec);
-//    clock_min min_clk(clk, reset_p, sec_edge, clk_min);// ¿©±â¸¸ sec_edge¸¦ ³Ö´Â ÀÌÀ¯ ½Ã°£ÀÌ ¹Ğ¸®±â ‹š¹®?
-//        // usec -> msec -> sec -> min ÀÌ·¸°Ô ¼øÂ÷ÀûÀ¸·Î ¼¼¾î¼­ ÇÑÅ¬¶ô¾¿ ¸¸µé¾îÁö´Â°Å´Ù. 
+//    clock_min min_clk(clk, reset_p, sec_edge, clk_min);// ì—¬ê¸°ë§Œ sec_edgeë¥¼ ë„£ëŠ” ì´ìœ  ì‹œê°„ì´ ë°€ë¦¬ê¸° Â‹Âšë¬¸?
+//        // usec -> msec -> sec -> min ì´ë ‡ê²Œ ìˆœì°¨ì ìœ¼ë¡œ ì„¸ì–´ì„œ í•œí´ë½ì”© ë§Œë“¤ì–´ì§€ëŠ”ê±°ë‹¤. 
         
     loadable_counter_dec_60 cur_time_sec(.clk(clk), .reset_p(reset_p), .clk_time(clk_sec), .load_enable(cur_time_load_en), .set_value1(set_sec1), .set_value10(set_sec10), 
-    .dec1(cur_sec1), .dec10(cur_sec10)); // ÇöÀç½Ã°£ ÃÊÄ«¿îÅÍ
+    .dec1(cur_sec1), .dec10(cur_sec10)); // í˜„ì¬ì‹œê°„ ì´ˆì¹´ìš´í„°
     loadable_counter_dec_60 cur_time_min(.clk(clk), .reset_p(reset_p), .clk_time(clk_min), .load_enable(cur_time_load_en), .set_value1(set_min1), .set_value10(set_min10), 
-    .dec1(cur_min1), .dec10(cur_min10)); // ÇöÀç½Ã°£ ºĞÄ«¿îÅÍ
+    .dec1(cur_min1), .dec10(cur_min10)); // í˜„ì¬ì‹œê°„ ë¶„ì¹´ìš´í„°
     loadable_counter_dec_60 set_time_sec(.clk(clk), .reset_p(reset_p), .clk_time(btn_pedge[1]), .load_enable(set_time_load_en), .set_value1(cur_sec1), .set_value10(cur_sec10), 
-    .dec1(set_sec1), .dec10(set_sec10)); // ¼¼ÆÃ½Ã°£ ÃÊÄ«¿îÅÍ
+    .dec1(set_sec1), .dec10(set_sec10)); // ì„¸íŒ…ì‹œê°„ ì´ˆì¹´ìš´í„°
     loadable_counter_dec_60 set_time_min(.clk(clk), .reset_p(reset_p), .clk_time(btn_pedge[2]), .load_enable(set_time_load_en), .set_value1(cur_min1), .set_value10(cur_min10), 
     .dec1(set_min1), .dec10(set_min10));
     
@@ -301,24 +301,24 @@ module loadable_watch(
     T_flip_flop_p tff_setmode(.clk(clk), .reset_p(reset_p), .t(btn_pedge[0]), .q(set_mode));
     
     edge_detector_n ed(.clk(clk), .reset_p(reset_p), .cp(set_mode), .n_edge(cur_time_load_en), .p_edge(set_time_load_en));
-    // cp°¡ set_modeÀÌ´Ï±î »ó½Â¿§ÁöÀÏ‹š set_time_load_enÀÌ 1ÀÌ µÇ´Â°Å°í, ÇÏ°­¿§ÁöÀÏ‹š cur_time_load_endl 1ÀÌ µÇ´Â°Å´Ù.
+    // cpê°€ set_modeì´ë‹ˆê¹Œ ìƒìŠ¹ì—£ì§€ì¼Â‹Âš set_time_load_enì´ 1ì´ ë˜ëŠ”ê±°ê³ , í•˜ê°•ì—£ì§€ì¼Â‹Âš cur_time_load_endl 1ì´ ë˜ëŠ”ê±°ë‹¤.
 /*  wire w1, w2;
     mux_2_1b mux1(.d0(btnU_pedge[0]), .d1(clk_sec), .s(set_mode), .f(w1));
     mux_2_1b mux2(.d0(btnU_pedge[1]), .d1(clk_min), .s(set_mode), .f(w2));*/
     
     assign sec_edge = set_mode ? btn_pedge[1] : clk_sec;
-    // set_modeÀÏ¶§ ¹öÆ°À¸·Î ÀÎÇØ ¹Ù²ï ÃÊ°¡ ºĞ¿¡ ¹İ¿µÀÌ ¾ÈµÇ¾î¼­ ¸¸µç ÄÚµå?
-    // ¸¸¾à 40ºĞ 59ÃÊÀÌ°í 1¹ø ¹öÆ°À» 3¹ø ´­·¶À¸¸é, 41ºĞ 02ÃÊ°¡ µÇ¾î¾ß ÇÏ´Âµ¥ 40ºĞ 02ÃÊ°¡ µÈ´Ù.
-    // ¹®Á¦ :  ÃÊ´Â system clk¿¡ ÀÇÇØ¼­ ¿Ã¶ó°¡Áö¸¸, ºĞÀº ¿Ã¶ó°¡Áö ¾Ê´Â´Ù.
-    // ÇØ°á : clock_min min_clkÀÇ ÀÔ·Â¿¡ sec_edge¸¦ ³Ö¾îÁÜÀ¸·Î½á, clock_min min_clkµµ system clk¿¡ ¹İ¿µµÉ ¼ö ÀÖ°Ô ÇÏ¿´´Ù.
+    // set_modeì¼ë•Œ ë²„íŠ¼ìœ¼ë¡œ ì¸í•´ ë°”ë€ ì´ˆê°€ ë¶„ì— ë°˜ì˜ì´ ì•ˆë˜ì–´ì„œ ë§Œë“  ì½”ë“œ?
+    // ë§Œì•½ 40ë¶„ 59ì´ˆì´ê³  1ë²ˆ ë²„íŠ¼ì„ 3ë²ˆ ëˆŒë €ìœ¼ë©´, 41ë¶„ 02ì´ˆê°€ ë˜ì–´ì•¼ í•˜ëŠ”ë° 40ë¶„ 02ì´ˆê°€ ëœë‹¤.
+    // ë¬¸ì œ :  ì´ˆëŠ” system clkì— ì˜í•´ì„œ ì˜¬ë¼ê°€ì§€ë§Œ, ë¶„ì€ ì˜¬ë¼ê°€ì§€ ì•ŠëŠ”ë‹¤.
+    // í•´ê²° : clock_min min_clkì˜ ì…ë ¥ì— sec_edgeë¥¼ ë„£ì–´ì¤Œìœ¼ë¡œì¨, clock_min min_clkë„ system clkì— ë°˜ì˜ë  ìˆ˜ ìˆê²Œ í•˜ì˜€ë‹¤.
 
     assign min_edge = set_mode ? btn_pedge[2] : clk_min;
-    // ÃÊ, ºĞ ¸»°í ½Ã°£±îÁö 6°³ÀÇ fnd¸¦ ½è´Ù¸é ÀÖ¾î¾ßÇÏ´Â ÄÚµå
+    // ì´ˆ, ë¶„ ë§ê³  ì‹œê°„ê¹Œì§€ 6ê°œì˜ fndë¥¼ ì¼ë‹¤ë©´ ìˆì–´ì•¼í•˜ëŠ” ì½”ë“œ
     
 endmodule
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-module loadable_watch_top( // Ä«¿îÅÍ °ªÀÌ µ¤¾î½áÁö´Â ½Ã°è
+module loadable_watch_top( // ì¹´ìš´í„° ê°’ì´ ë®ì–´ì¨ì§€ëŠ” ì‹œê³„
     input clk, reset_p,
     input [2:0] btn,
     output [3:0] com,
@@ -338,7 +338,7 @@ module loadable_watch_top( // Ä«¿îÅÍ °ªÀÌ µ¤¾î½áÁö´Â ½Ã°è
 endmodule
 
 
-// STOP WATCH ¸¸µé±â//////////
+// STOP WATCH ë§Œë“¤ê¸°//////////
 module stop_watch_top(
     input clk, reset_p,
     input [2:0] btn,
@@ -433,7 +433,7 @@ module stop_watch_csec(
 endmodule
 
 
-//////////////////////////////////////ÃÊ : 10ms ´ÜÀ§ Ãâ·Â ½ºÀ§Ä¡
+//////////////////////////////////////ì´ˆ : 10ms ë‹¨ìœ„ ì¶œë ¥ ìŠ¤ìœ„ì¹˜
 module stop_watch_top_1(
     input clk, reset_p,
     input [3:0] btn,
@@ -479,7 +479,7 @@ module cook_timer(
 //    sec_clk_top sec_clk(clk_start, reset_p, clk_sec);
     
     assign {alarm_off, inc_min, inc_sec, btn_start} = btn_pedge;
-    // µÚ¿¡ ÀÔ·ÂÀÌ ¾ÕÀ¸·Î ³Ñ¾î°¡´Â ±¸Á¶ÀÌ±â ¶§¹®¿¡ ¹Ù²ã¼­ÇÏ¸é ¾ÈµÈ´Ù.
+    // ë’¤ì— ì…ë ¥ì´ ì•ìœ¼ë¡œ ë„˜ì–´ê°€ëŠ” êµ¬ì¡°ì´ê¸° ë•Œë¬¸ì— ë°”ê¿”ì„œí•˜ë©´ ì•ˆëœë‹¤.
     
     assign led[5] = start_stop;
     assign led[4] = time_out;
@@ -491,10 +491,10 @@ module cook_timer(
     
     
     loadable_downcounter_dec_60 cur_sec(clk, reset_p, clk_sec, load_enable, set_sec1, set_sec10, cur_sec1, cur_sec10, dec_clk);
-    // ÃÊ Ä«¿îÅÍ¿¡¼­ ¼³Á¤ÇÑ Å¬¶ôÀ» ºĞÄ«¿îÅÍ¿¡ ³Ö¾îÁÖ¸é ÁÖ´Â°ÍÀÌ¾ú´Ù. 
-    loadable_downcounter_dec_60 cur_min(clk, reset_p, dec_clk, load_enable, set_min1, set_min10, cur_min1, cur_min10); // ¿©±â¼­´Â dec_clkÀ» Áö¿ö¾ßÇÑ´Ù.?
+    // ì´ˆ ì¹´ìš´í„°ì—ì„œ ì„¤ì •í•œ í´ë½ì„ ë¶„ì¹´ìš´í„°ì— ë„£ì–´ì£¼ë©´ ì£¼ëŠ”ê²ƒì´ì—ˆë‹¤. 
+    loadable_downcounter_dec_60 cur_min(clk, reset_p, dec_clk, load_enable, set_min1, set_min10, cur_min1, cur_min10); // ì—¬ê¸°ì„œëŠ” dec_clkì„ ì§€ì›Œì•¼í•œë‹¤.?
     
-  // cur_timeÀÌ 0ÀÌµÉ¶§ start_stopÀ» 0À¸·Î ¸ÂÃß±â À§ÇØ time_outÀÇ ¿§Áö¸¦ Àâ¾ÆÁØ °Í.
+  // cur_timeì´ 0ì´ë ë•Œ start_stopì„ 0ìœ¼ë¡œ ë§ì¶”ê¸° ìœ„í•´ time_outì˜ ì—£ì§€ë¥¼ ì¡ì•„ì¤€ ê²ƒ.
     always @(posedge clk or posedge reset_p)begin
         if(reset_p) time_out = 0;
         else begin
@@ -506,12 +506,12 @@ module cook_timer(
     edge_detector_n ed(.clk(clk), .reset_p(reset_p), .cp(start_stop), .p_edge(load_enable));
     
 //    T_flip_flop_p tff_setmode(.clk(clk), .reset_p(reset_p), .t(btn_start), .q(start_stop));
-// ¹Ø¿¡ always¹®Àº TFFÀÎµ¥ TFFÀÇ ³»¿ëÀ» ¼öÁ¤ÇØ¼­ ½Ã°£À» cur_time ÀÌ 0ÀÌ µÇ¸é ¸ØÃß´Â°É º¸¿©ÁÖ´Â ÄÚµå
+// ë°‘ì— alwaysë¬¸ì€ TFFì¸ë° TFFì˜ ë‚´ìš©ì„ ìˆ˜ì •í•´ì„œ ì‹œê°„ì„ cur_time ì´ 0ì´ ë˜ë©´ ë©ˆì¶”ëŠ”ê±¸ ë³´ì—¬ì£¼ëŠ” ì½”ë“œ
     always @(posedge clk or posedge reset_p)begin
         if(reset_p) start_stop = 0;
         else begin
             if(btn_start) start_stop = ~start_stop;
-            else if(timeout_pedge) start_stop = 0; // 1msecÇÏ°í ÇÑÅ¬¶ô ÈÄ¿¡ 0ÀÌ µÈ´Ù. ?
+            else if(timeout_pedge) start_stop = 0; // 1msecí•˜ê³  í•œí´ë½ í›„ì— 0ì´ ëœë‹¤. ?
         end
     end
     
@@ -538,11 +538,11 @@ module cook_timer(
 //    reg [16:0] clk_div = 0;
 //    always @(posedge clk) clk_div = clk_div + 1;
     
-//    assign buzz_clk = alarm ? clk_div[12] : 0; // 13¹ø bit°¡ 8000~9000hz Á¤µµ µÈ´Ù. 
+//    assign buzz_clk = alarm ? clk_div[12] : 0; // 13ë²ˆ bitê°€ 8000~9000hz ì •ë„ ëœë‹¤. 
     
 endmodule
 
-/////////////////±³¼ö´ÔÀÌ ÇÏ½Å ÁÖ¹æ Å¸ÀÌ¸Ó///// ¹öÆ° 4°³ »ç¿ë ½ºÅ¸Æ®, ºĞ, ÃÊ. ¾Ë¶÷off.
+/////////////////êµìˆ˜ë‹˜ì´ í•˜ì‹  ì£¼ë°© íƒ€ì´ë¨¸///// ë²„íŠ¼ 4ê°œ ì‚¬ìš© ìŠ¤íƒ€íŠ¸, ë¶„, ì´ˆ. ì•ŒëŒoff.
 module cook_timer_top(
     input clk, reset_p,
     input [3:0] btn,
@@ -567,8 +567,8 @@ module cook_timer_top(
 endmodule
 
 
-////////////////////////////////////////°³ÀÎ°úÁ¦////////////////////////////////////////
-// ½Ã°è ½ºÅé¿öÄ¡ ÁÖ¹æÅ¸ÀÌ¸Ó // ¹öÆ°À» ´©¸¦¶§¸¶´Ù Ãâ·ÂÀÌ ¹Ù²ñ ///ÀÌ°É ³»°¡ ÇÏ´Ù´Ï µğ¸Ô½º´Â ±³¼ö´ÔÀÌ µµ¿ÍÁÖ½É
+////////////////////////////////////////ê°œì¸ê³¼ì œ////////////////////////////////////////
+// ì‹œê³„ ìŠ¤í†±ì›Œì¹˜ ì£¼ë°©íƒ€ì´ë¨¸ // ë²„íŠ¼ì„ ëˆ„ë¥¼ë•Œë§ˆë‹¤ ì¶œë ¥ì´ ë°”ë€œ ///ì´ê±¸ ë‚´ê°€ í•˜ë‹¤ë‹ˆ ë””ë¨¹ìŠ¤ëŠ” êµìˆ˜ë‹˜ì´ ë„ì™€ì£¼ì‹¬
 module smart_watch(
     input clk, reset_p,
     input [4:0] btn,
@@ -603,7 +603,7 @@ module smart_watch(
                    (ring_out[2]) ? seg_7_out_c : 0; 
 endmodule
 
-///////////////////////////////////Smart Watch ±³¼ö´ÔÀÌ ÇÏ½Å °Í
+///////////////////////////////////Smart Watch
 module multy_purpose_watch(
     input clk, reset_p,
     input [4:0] btn,
@@ -646,7 +646,7 @@ module multy_purpose_watch(
         end
     end
     
-    assign {cook_btn, stopw_btn, watch_btn} = (mode == watch_mode) ? {7'b0, btn_pedge[2:0]} : // ÀÌ°Ô¹Ù·Î DeMux ¾²´Â ¹æ¹ıÀÌ´Ù.
+    assign {cook_btn, stopw_btn, watch_btn} = (mode == watch_mode) ? {7'b0, btn_pedge[2:0]} : // ì´ê²Œë°”ë¡œ DeMux ì“°ëŠ” ë°©ë²•ì´ë‹¤.
                                               (mode == stop_watch_mode) ? {4'b0, btn_pedge[2:0], 3'b0} : 
                                               {btn_pedge[3:0], 6'b0}; 
     
@@ -656,7 +656,7 @@ module multy_purpose_watch(
     
     fnd_4digit_cntr fnd(.clk(clk), .reset_p(reset_p), .value(value), .seg_7_an(seg_7), .com(com));
     
-    //    assign com = (mode == cook_timer_mode) ? cook_com : // ÀÌ°Ô ¹Ù·Î Mux ¾²´Â ¹æ¹ıÀÌ´Ù.
+    //    assign com = (mode == cook_timer_mode) ? cook_com : // ì´ê²Œ ë°”ë¡œ Mux ì“°ëŠ” ë°©ë²•ì´ë‹¤.
     //                 (mode == stop_watch_mode) ? stopw_com : 
     //                 watch_com;
     //    assign seg_7 = (mode == cook_timer_mode) ? cook_seg_7 : 
@@ -664,7 +664,7 @@ module multy_purpose_watch(
     //                   watch_seg7;
 endmodule
 
-////////////////////DHT11 ¿Â½Àµµ¼¾¼­
+////////////////////DHT11 ì˜¨ìŠµë„ì„¼ì„œ
 module dht11_top(
     input clk, reset_p,
     inout dht11_data,
@@ -706,7 +706,7 @@ module ultrasonic_top(
     
 endmodule
 
-////////////////////////////////PWM_LED ¹à±â Á¦¾îÇÏ´Â top module 
+////////////////////////////////PWM_LED ë°ê¸° ì œì–´í•˜ëŠ” top module 
 module led_pwm_top(
     input clk, reset_p,
     output [3:0] led_pwm
@@ -714,7 +714,7 @@ module led_pwm_top(
     reg [27:0] clk_div;
     always @(posedge clk)clk_div = clk_div + 1;
     
-    // duty¿¡ 0%¿¡¼­ 63%±îÁö ÁÖ´Â°Í clk_div[27:22] 
+    // dutyì— 0%ì—ì„œ 63%ê¹Œì§€ ì£¼ëŠ”ê²ƒ clk_div[27:22] 
     pwm_128pc pwm_led_r(.clk(clk), .reset_p(reset_p), .duty(clk_div[27:21]), .pwm_freq(10_000), .pwm_128(led_pwm[0]));
     
     pwm_128pc pwm_led_g(.clk(clk), .reset_p(reset_p), .duty(clk_div[26:20]), .pwm_freq(10_000), .pwm_128(led_pwm[1]));
@@ -725,7 +725,7 @@ module led_pwm_top(
 
 endmodule
 
-//////////////////Motor ¼ÕÇ³±â
+//////////////////Motor ì†í’ê¸°
 module dc_motor_pwm_top(
     input clk, reset_p,
     output motor_pwm
@@ -738,7 +738,7 @@ module dc_motor_pwm_top(
     
 endmodule
 
-/////////////////SG90 servo motor ³»°¡ ÇÑ °Í
+/////////////////SG90 servo motor ë‚´ê°€ í•œ ê²ƒ
 module servo_motor_pwm_top(
     input clk, reset_p,
     input [2:0] btn,
@@ -765,7 +765,7 @@ module servo_motor_pwm_top(
     
 endmodule
 
-/////////////////±³¼ö´ÔÀÌ ÇÏ½Å °Í 
+/////////////////êµìˆ˜ë‹˜ì´ í•˜ì‹  ê²ƒ 
 module servo_sg90(
     input clk, reset_p,
     input [2:0] btn,
@@ -792,7 +792,7 @@ module servo_sg90(
             duty = 14;
             up_down = 1;
         end
-        else if(btn_pedge[0])begin // ¾ê°¡ ¿ì¼±¼øÀ§°¡ ¿ìÀ§¿¡ ÀÖ´Ù. »ç¿ëÀÚ¸¦ À§ÁÖ·Î ÄÚµå¸¦ Â¥¾ß º¸±â°¡ ÆíÇÏ±â ¶§¹®
+        else if(btn_pedge[0])begin // ì–˜ê°€ ìš°ì„ ìˆœìœ„ê°€ ìš°ìœ„ì— ìˆë‹¤. ì‚¬ìš©ìë¥¼ ìœ„ì£¼ë¡œ ì½”ë“œë¥¼ ì§œì•¼ ë³´ê¸°ê°€ í¸í•˜ê¸° ë•Œë¬¸
             if(up_down)up_down = 0;
             else up_down = 1;
         end
@@ -811,7 +811,7 @@ module servo_sg90(
         end
     end
     
-    // 7,8,9,10 ³×´Ü°è¸¸ ¿òÁ÷ÀÌ°Ô ÇÑ°Í .duty(clk_div[29:28] + 7)    
+    // 7,8,9,10 ë„¤ë‹¨ê³„ë§Œ ì›€ì§ì´ê²Œ í•œê²ƒ .duty(clk_div[29:28] + 7)    
     pwm_512step servo0(.clk(clk), .reset_p(reset_p), .duty(duty), .pwm_freq(50), .pwm_servo(sg90));
     
     wire [15:0] bcd_duty;
@@ -822,7 +822,7 @@ module servo_sg90(
 endmodule
 
 
-//////½Â¹üÀÌÇüÀÌ ÇÑ°Í
+//////ìŠ¹ë²”ì´í˜•ì´ í•œê²ƒ
 module servo_sg90_1(
     input clk, reset_p,
     input [2:0] btn,
@@ -877,7 +877,7 @@ module servo_sg90_1(
     
 endmodule
 
-// °¡º¯ÀúÇ×À» ÀÌ¿ëÇÏ¿©  analog¿¡¼­ digital·Î º¯È¯ÇÏ´Â È¸·Î¸¦ ¸¸µé¾îº¸ÀÚ
+// ê°€ë³€ì €í•­ì„ ì´ìš©í•˜ì—¬  analogì—ì„œ digitalë¡œ ë³€í™˜í•˜ëŠ” íšŒë¡œë¥¼ ë§Œë“¤ì–´ë³´ì
 module adc_top(
     input clk, reset_p,
     input vauxp6, vauxn6,
@@ -902,7 +902,7 @@ module adc_top(
           .channel_out(channel_out),         // Channel Selection Outputs
           .do_out(do_out),              // Output data bus for dynamic reconfiguration port
 //          drdy_out,            // Data ready signal for the dynamic reconfiguration port
-          .eoc_out(eoc_out)             // End of Conversion Signal // analog¸¦ digital·Î º¯È¯ÇÏ°í 1·Î º¯ÇÏ´Â,,
+          .eoc_out(eoc_out)             // End of Conversion Signal // analogë¥¼ digitalë¡œ ë³€í™˜í•˜ê³  1ë¡œ ë³€í•˜ëŠ”,,
 //          eos_out,             // End of Sequence Signal
 //          alarm_out,           // OR'ed output of all the Alarms    
 //          vp_in,               // Dedicated Analog Input Pair
@@ -924,7 +924,7 @@ module adc_top(
     fnd_4digit_cntr fnd(.clk(clk), .reset_p(reset_p), .value(bcd_value), .seg_7_an(seg_7), .com(com));
 endmodule
 
-//////////////8bit Â¥¸® 
+//////////////8bit ì§œë¦¬ 
 module adc_top1(
     input clk, reset_p,
     input vauxp6, vauxn6,
@@ -950,7 +950,7 @@ module adc_top1(
           .channel_out(channel_out),         // Channel Selection Outputs
           .do_out(do_out),              // Output data bus for dynamic reconfiguration port
 //          drdy_out,            // Data ready signal for the dynamic reconfiguration port
-          .eoc_out(eoc_out)             // End of Conversion Signal // analog¸¦ digital·Î º¯È¯ÇÏ°í 1·Î º¯ÇÏ´Â,,
+          .eoc_out(eoc_out)             // End of Conversion Signal // analogë¥¼ digitalë¡œ ë³€í™˜í•˜ê³  1ë¡œ ë³€í•˜ëŠ”,,
 //          eos_out,             // End of Sequence Signal
 //          alarm_out,           // OR'ed output of all the Alarms    
 //          vp_in,               // Dedicated Analog Input Pair
@@ -963,7 +963,7 @@ module adc_top1(
     reg [11:0] adc_value;
     always @(posedge clk or posedge reset_p)begin
         if(reset_p)adc_value = 0;
-        else if(eoc_out_pedge)adc_value = {4'b0, do_out[15:8]}; // 8bit Â¥¸® Á¤¹Ğµµ
+        else if(eoc_out_pedge)adc_value = {4'b0, do_out[15:8]}; // 8bit ì§œë¦¬ ì •ë°€ë„
     end
     
     wire [15:0] bcd_value;
@@ -1007,15 +1007,15 @@ module adc_sequence2_top(
     wire eoc_out_pedge;
     edge_detector_n ed_eoc(.clk(clk), .reset_p(reset_p), .cp(eoc_out), .p_edge(eoc_out_pedge));
     
-    reg [11:0] adc_value_x, adc_value_y; // adc_value°¡ µÎ°³ ÇÊ¿äÇÏ´Ù xÃà, yÃà
+    reg [11:0] adc_value_x, adc_value_y; // adc_valueê°€ ë‘ê°œ í•„ìš”í•˜ë‹¤ xì¶•, yì¶•
     always @(posedge clk or posedge reset_p)begin
         if(reset_p)begin
             adc_value_x = 0;
             adc_value_y = 0;
         end
-        else if(eoc_out_pedge)begin // channel_out ¿¡ µû¶ó xÀÎÁö yÀÎÁö ÆÇº°ÇÒ ¼ö ÀÖ´Ù.
-            case(channel_out[3:0]) // ÃÖ»óÀ§ ºñÆ®¸¦ ÇÏ³ª »©°í 4ºñÆ®¸¸ Áà¾ßÇÑ´Ù. ¿Ö?
-                6 : adc_value_x = {4'b0, do_out[15:10]}; // fnd¿¡ °¢°¢ µÎÀÚ¸®¾¿ ¾²·Á°í 6ºñÆ®·Î ÇÑ°ÅÀÓ. 7ºñÆ®¸é 128±îÁö ³ª¿À´Ï±î
+        else if(eoc_out_pedge)begin // channel_out ì— ë”°ë¼ xì¸ì§€ yì¸ì§€ íŒë³„í•  ìˆ˜ ìˆë‹¤.
+            case(channel_out[3:0]) // ìµœìƒìœ„ ë¹„íŠ¸ë¥¼ í•˜ë‚˜ ë¹¼ê³  4ë¹„íŠ¸ë§Œ ì¤˜ì•¼í•œë‹¤. ì™œ?
+                6 : adc_value_x = {4'b0, do_out[15:10]}; // fndì— ê°ê° ë‘ìë¦¬ì”© ì“°ë ¤ê³  6ë¹„íŠ¸ë¡œ í•œê±°ì„. 7ë¹„íŠ¸ë©´ 128ê¹Œì§€ ë‚˜ì˜¤ë‹ˆê¹Œ
                 15: adc_value_y = {4'b0, do_out[15:10]};
             endcase
         end
@@ -1030,7 +1030,7 @@ module adc_sequence2_top(
     wire eos_out_pedge; 
     edge_detector_n ed_eos(.clk(clk), .reset_p(reset_p), .cp(eos_out), .p_edge(eos_out_pedge));
     
-    reg [6:0] duty_x, duty_y; // ¹Ì¼¼ÇÏ°Ô Å¸ÀÌ¹ÖÀ» ¸ÂÃß±â À§ÇØ¼­ eos ¸¦ ÀÌ¿ëÇÑ °Í. À°¾ÈÀ¸·Î´Â ´Ş¶óÁø°É ÆÇº°ÇÏ±â ¾î·Æ´Ù.
+    reg [6:0] duty_x, duty_y; // ë¯¸ì„¸í•˜ê²Œ íƒ€ì´ë°ì„ ë§ì¶”ê¸° ìœ„í•´ì„œ eos ë¥¼ ì´ìš©í•œ ê²ƒ. ìœ¡ì•ˆìœ¼ë¡œëŠ” ë‹¬ë¼ì§„ê±¸ íŒë³„í•˜ê¸° ì–´ë µë‹¤.
     always @(posedge clk or posedge reset_p)begin
         if(reset_p)begin
             duty_x = 0;
@@ -1051,15 +1051,15 @@ module adc_sequence2_top(
     
 endmodule
 
-///I2C Åë½Å¸ğµâ TOP
-// 0¹ø ´©¸£¸é data¿¡ 0 8°³ º¸³»°í back light ÄÑÁö°í, 1¹ø ´©¸£¸é data¿¡ 1 8°³ º¸³»°í back light ²¨Áø´Ù. 
+///I2C í†µì‹ ëª¨ë“ˆ TOP
+// 0ë²ˆ ëˆ„ë¥´ë©´ dataì— 0 8ê°œ ë³´ë‚´ê³  back light ì¼œì§€ê³ , 1ë²ˆ ëˆ„ë¥´ë©´ dataì— 1 8ê°œ ë³´ë‚´ê³  back light êº¼ì§„ë‹¤. 
 module I2C_master_top(
     input clk, reset_p,
     input [1:0] btn,
     output sda, scl
 );  
-    // ¿ì¸®´Â write¸¸ ¾µ°Çµ¥, read°¡ 1, write°¡ 0 ÀÌ¾î¼­ rd_wr¿¡ 0À» ÁØ°Å´Ù.
-    // addr ÁÖ¼Ò°ªÀº datasheet¿¡ 0x27·Î Á¤ÇØÁ®ÀÖ´Â °ªÀÌ´Ù.
+    // ìš°ë¦¬ëŠ” writeë§Œ ì“¸ê±´ë°, readê°€ 1, writeê°€ 0 ì´ì–´ì„œ rd_wrì— 0ì„ ì¤€ê±°ë‹¤.
+    // addr ì£¼ì†Œê°’ì€ datasheetì— 0x27ë¡œ ì •í•´ì ¸ìˆëŠ” ê°’ì´ë‹¤.
     
     reg [7:0] data;
     reg valid;
@@ -1082,7 +1082,7 @@ module I2C_master_top(
             end
             else if(btn_nedge[0]) valid = 0;
             else if(btn_pedge[1])begin
-                data = 8'b0000_1000; // data pin Áß¿¡ 3¹ø bit°¡ back light¿¡ ¿¬°áµÇÀÖ¾î¼­ 3¹ø¿¡¸¸ 1 Áàµµ µÇ´Â °ÍÀÌ´Ù.
+                data = 8'b0000_1000; // data pin ì¤‘ì— 3ë²ˆ bitê°€ back lightì— ì—°ê²°ë˜ìˆì–´ì„œ 3ë²ˆì—ë§Œ 1 ì¤˜ë„ ë˜ëŠ” ê²ƒì´ë‹¤.
                 valid = 1;
             end
             else if(btn_nedge[1]) valid = 0;
@@ -1101,7 +1101,7 @@ module I2C_txtlcd_top(
     parameter MOVE_CURSOR   = 6'b00_1000;
     parameter SHIFT_DISPLAY = 6'b01_0000;
     
-    parameter SAMPLE_DATA = "A"; // ÀÌ·¸°Ô ÇÏ¸é AÀÇ ¾Æ½ºÅ° ÄÚµå°ªÀÌ ÀúÀåµÈ´Ù.
+    parameter SAMPLE_DATA = "A"; // ì´ë ‡ê²Œ í•˜ë©´ Aì˜ ì•„ìŠ¤í‚¤ ì½”ë“œê°’ì´ ì €ì¥ëœë‹¤.
     
     wire [2:0] btn_pedge;
     button_cntr btn_cntr0(.clk(clk), .reset_p(reset_p), .btn(btn[0]), .btn_pe(btn_pedge[0]));
@@ -1136,10 +1136,10 @@ module I2C_txtlcd_top(
         else state = next_state;
     end
     
-    reg init_flag; // ÃÊ±âÈ­°¡ ¾ÈµÆÀ»¶§ ÃÊ±âÈ­½ÃÄÑÁÖ´Â º¯¼ö
+    reg init_flag; // ì´ˆê¸°í™”ê°€ ì•ˆëì„ë•Œ ì´ˆê¸°í™”ì‹œì¼œì£¼ëŠ” ë³€ìˆ˜
     reg [3:0] cnt_data;
     
-    always @(posedge clk or posedge reset_p)begin // text lcd¸¦ ´Ù·ç´Â always¹®
+    always @(posedge clk or posedge reset_p)begin // text lcdë¥¼ ë‹¤ë£¨ëŠ” alwaysë¬¸
         if(reset_p)begin
             next_state = IDLE;
             send_buffer = 0;
@@ -1156,7 +1156,7 @@ module I2C_txtlcd_top(
                         else if(btn_pedge[1])next_state = MOVE_CURSOR;
                         else if(btn_pedge[2])next_state = SHIFT_DISPLAY;
                     end
-                    else begin // datasheet¿¡ ÃÊ±âÈ­ÇÏ´Â ¹æ¹ı ±×´ë·Î ÇØ¾ßÇØ¼­ 40ms ±â´Ù¸®´Â °Å´Ù. 
+                    else begin // datasheetì— ì´ˆê¸°í™”í•˜ëŠ” ë°©ë²• ê·¸ëŒ€ë¡œ í•´ì•¼í•´ì„œ 40ms ê¸°ë‹¤ë¦¬ëŠ” ê±°ë‹¤. 
                         if(count_usec <= 22'd80_000)begin
                             count_usec_e = 1;
                         end
@@ -1166,7 +1166,7 @@ module I2C_txtlcd_top(
                         end
                     end
                 end
-                INIT:begin // datasheet ´ë·Î 4bit¾¿ º¸³»ÁÖ´Â°Í ½Ã°£Àº ¿Ö ÀÌ·¸°Ô ÇÏ´ÂÁö ¸ğ¸£°ÙÀ½
+                INIT:begin // datasheet ëŒ€ë¡œ 4bitì”© ë³´ë‚´ì£¼ëŠ”ê²ƒ ì‹œê°„ì€ ì™œ ì´ë ‡ê²Œ í•˜ëŠ”ì§€ ëª¨ë¥´ê²ŸìŒ
                     if(count_usec <= 22'd1000)begin
                         send_buffer = 8'h33;
                         send_e = 1;
@@ -1186,7 +1186,7 @@ module I2C_txtlcd_top(
                     end
                     else if(count_usec <= 22'd3030)send_e = 0;
                     else if(count_usec <= 22'd4030)begin
-                        send_buffer = 8'h0e; // datasheet¿¡ 0000_1100À¸·Î ÇØÁà¾ß display ONÀÌ¶ó°í ¸í½ÃµÇ¾îÀÖ´Ù.
+                        send_buffer = 8'h0e; // datasheetì— 0000_1100ìœ¼ë¡œ í•´ì¤˜ì•¼ display ONì´ë¼ê³  ëª…ì‹œë˜ì–´ìˆë‹¤.
                         send_e = 1;
                         count_usec_e = 1;
                     end
@@ -1209,7 +1209,7 @@ module I2C_txtlcd_top(
                         count_usec_e = 0;
                     end
                 end
-                SEND:begin // data send¸¦ ÇÒ°Å´Ù. ¿ì¸®´Â ´ë¹®ÀÚ A¸¦ ÂïÈ÷°Ô ÇÒ°Å´Ù.
+                SEND:begin // data sendë¥¼ í• ê±°ë‹¤. ìš°ë¦¬ëŠ” ëŒ€ë¬¸ì Aë¥¼ ì°íˆê²Œ í• ê±°ë‹¤.
                     if(busy)begin
                         next_state = IDLE;
                         send_e = 0;
@@ -1249,12 +1249,12 @@ module I2C_txtlcd_top(
 
 endmodule
 
-///////////////////////////¼±Ç³±â ÆÀÇÁ·ÎÁ§Æ® ¿Ï¼º/////////////////////////////////////////////////////////////////////////
+///////////////////////////ì„ í’ê¸° íŒ€í”„ë¡œì íŠ¸ ì™„ì„±/////////////////////////////////////////////////////////////////////////
 module fan_top(
     input clk, reset_p,
-    input [3:0]btn, // LED ¹à±â, ¹Ù¶÷ ¼¼±â, Å¸ÀÌ¸Ó ¹öÆ°À¸·Î 3°³
+    input [3:0]btn, // LED ë°ê¸°, ë°”ëŒ ì„¸ê¸°, íƒ€ì´ë¨¸ ë²„íŠ¼ìœ¼ë¡œ 3ê°œ
     input echo,
-    output led_pwm_o, motor_pwm_o,//LED ¹à±â, ¸ğÅÍÀÇ output
+    output led_pwm_o, motor_pwm_o,//LED ë°ê¸°, ëª¨í„°ì˜ output
     output [3:0]com,
     output [7:0]seg_7,
     output [2:0]motor_led,timer_led,
@@ -1264,12 +1264,12 @@ module fan_top(
     wire [11:0] distance;
     wire motor_off, motor_sw;
     
-    led_brightness(.clk(clk), //LED¹à±â ¸ğµâ
+    led_brightness(.clk(clk), //LEDë°ê¸° ëª¨ë“ˆ
                    .reset_p(reset_p),
                    .btn(btn[0]),
                    .led_pwm_o(led_pwm_o)); //JA1
                
-    dc_motor_speed(.clk(clk), //¸ğÅÍ ½ºÇÇµå ¸ğµâ
+    dc_motor_speed(.clk(clk), //ëª¨í„° ìŠ¤í”¼ë“œ ëª¨ë“ˆ
                    .reset_p(reset_p),
                    .motor_off(motor_off),
                    .distance(distance),
